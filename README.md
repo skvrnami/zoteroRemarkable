@@ -1,9 +1,10 @@
-# Zotero Remarkable Sync
+# Zotero reMarkable Sync
 
 This is a little utility that I made to keep a collection/folder in sync with Zotero and reMarkable.
 So far, it works only one way - upload papers from Zotero to reMarkable.
 
-## Setup
+## Setup
+
 - Install requirements
 `pip install -r requirements.txt`
 - Create `config.py` with the following content:
