@@ -1,28 +1,24 @@
 # Zotero Remarkable Sync
 
-This is a little utility that I made to keep a collection/folder in sync with Zotero and Remarkable.
-My zotero setup uses external storage (I store all attachments on OneDrive)
+This is a little utility that I made to keep a collection/folder in sync with Zotero and reMarkable.
+So far, it works only one way - upload papers from Zotero to reMarkable.
 
-## Setup
- - install rmapi
- - Download the [sync.py](https://raw.githubusercontent.com/oscarmorrison/zoteroRemarkableO/master/sync.py)
- - create a `.env` file
+## Setup
+- Install requirements
+`pip install -r requirements.txt`
+- Create `config.py` with the following content:
+```
+LIBRARY_ID = "XXXXX" # Zotero Library ID
+API_KEY = "XXXXX" # Zotero API key
+STORAGE_BASE_PATH = "/Users/{user}/Zotero/storage" # Path to local storage of Zotero
+```
 
-### Dependancies
-- python3
-- [rmapi](https://github.com/juruen/rmapi)
-- pyzotero
-- pydash
-- dotenv
-(the above 3 python libraries can be installed using pip3)
+Library ID and Zotero API key is available at [https://www.zotero.org/settings/keys](https://www.zotero.org/settings/keys).
 
-### Env file
-- Create a zotero api key
-- get zotero library_id (from zotero web)
-- create a folder on remarkable and a collection in zotero
-- get base path for zotero pdf (papers)
+## Usage
 
-### Usage
-_(ensure you have a .env file, with zotero api key, and rmapi setup)_  
 Then to sync, just run:  
-  `python3 sync.py`
+> `python3 sync.py -z {zotero_collection_name} -r {remarkable_folder_name}`
+
+e.g.
+> `python3 sync.py -z preferential-voting -r papers`
