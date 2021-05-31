@@ -32,9 +32,12 @@ collection_id = getCollectionId(zotero, COLLECTION_NAME)
 # get papers that we want from Zetero Remarkable collection
 papers = getPapersTitleAndPathsFromZoteroCollection(zotero, collection_id, STORAGE_BASE_PATH)
 print(f"{len(papers)} papers in Zotero {COLLECTION_NAME} collection name")
-
 meta_items = rm.get_meta_items()
+
+print('------- remarkable papers -------')
 remarkable_papers = getPapersFromRemarkable(meta_items, FOLDER_NAME)
+
+print('------- upload papers -------')
 upload_papers = getUploadListOfPapers(remarkable_papers, papers)
 upload_folder = [ i for i in meta_items if i.VissibleName == FOLDER_NAME ][0]
 
@@ -43,9 +46,7 @@ for i in upload_papers:
     upload_paper = i.get('path')
     rawDocument = ZipDocument(doc=upload_paper)
     rm.upload(rawDocument, upload_folder)
-
 print('------- sync complete -------')
-
 
 """
 

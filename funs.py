@@ -10,7 +10,7 @@ def getPapersTitleAndPathsFromZoteroCollection(zotero, collection_id, STORAGE_BA
     for item in collection_items:
         if(item.get('data').get('contentType') == 'application/pdf') and item.get('data').get('linkMode') == 'imported_file':
             item_pdf_path = STORAGE_BASE_PATH + "/" + item.get('data').get('key') + "/" + item.get('data').get('filename')
-            item_title = item.get('data').get('title')#[:-4]
+            item_title = item.get('data').get('title')[:-4]
             if (item_pdf_path and item_title):
                 papers.append({ 'title': item_title, 'path': item_pdf_path })
     return papers
@@ -25,6 +25,7 @@ def getUploadListOfPapers(remarkable_files, papers):
     upload_list = []
     for paper in papers:
         title = paper.get('title')
+        # print(title)
         if title not in remarkable_files:
             upload_list.append(paper)
     return upload_list
